@@ -47,7 +47,7 @@ var orm = {
     },
 
     //insertOne()
-    insertOne: function (table, cols, vals, cd) {
+    insertOne: function (table, cols, vals, cb) {
         var queryString = "INSERT INTO " + table;
 
         queryString += " (";
@@ -63,7 +63,7 @@ var orm = {
             if (err) {
                 throw err;
             }
-
+            //return results in callback
             cb(result);
         });
     },

@@ -1,0 +1,20 @@
+h1{
+    color : red;
+    text-align: center;
+}
+
+h2{
+    color : red;
+}
+
+h3{
+    color: blue;
+}
+
+input{
+    height: 38px;
+}
+
+.devouredBurgers{
+    color:grey
+}

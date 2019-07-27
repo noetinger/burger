@@ -1,15 +1,13 @@
 const express = require('express');
-
 const router = express.Router();
 
 //Import model for database/ORM functions
 const burger = require('../models/burger.js');
 
-//Router for the app
-
 //get all data
 router.get("/", function (req, res) {
     burger.selectAll(function (data) {
+        console.log("Select All Activated")
         var hbsObject = {
             burgers: data
         };
@@ -19,33 +17,34 @@ router.get("/", function (req, res) {
 });
 
 //insert(create) new burger
-router.post("/api/burger", function (req, res) {
+router.post("/burger", function (req, res) {
+    console.log("Insert One Activated")
+
     burger.insertOne([
-            burger_name
+            'burger_name'
         ],
         [
-            req.body.name
+            req.body.burger_name
         ],
         function (result) {
-            res.json({
-                id: result.insertId
-            });
+            res.redirect('/')
         });
 });
 
 
 //Update
-router.put("/api/burger/:id", function (req, res) {
-    let condition = "id = " + req.params.id;
+router.put("/burger/:id", function (req, res) {
+    console.log("Put Activated")
+    let condition = 'id = ' + req.params.id;
 
     console.log("condition", condition);
 
     burger.updateOne({
         devoured: true
-    }, conditon, function (data) {
+    }, condition, function (data) {
         res.redirect("/");
     });
 });
-
+  
 //export the router
 module.exports = router;

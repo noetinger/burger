@@ -1,6 +1,7 @@
 const express = require('express');
+const methodOverride = require('method-override');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -10,6 +11,9 @@ app.use(express.static("public"));
 // Parse application body as JSON
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Override with POST having ?_method=PUT
+app.use(methodOverride('_method'));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
